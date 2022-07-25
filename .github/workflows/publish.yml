@@ -1,0 +1,27 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest]
+
+    steps:
+      - name: Yarn Setup
+        uses: DerYeger/yarn-setup-action@v1.0.1
+        with:
+          # The version of Node.js that will be used
+          node-version: 16
+
+      - name: Publish releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx electron-builder -- --publish always --win --mac --linux
