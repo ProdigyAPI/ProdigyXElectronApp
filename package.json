@@ -1,0 +1,43 @@
+{
+    "name": "ProdigyX",
+    "version": "1.0.0",
+    "description": "An electron app for Prodigy X.",
+    "main": "lib/app.js",
+    "author": "hostedposted <hostedpostedsite@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "build_typescript": "tsc",
+        "start": "npm run build_typescript && electron ./lib/app.js",
+        "build": "npm run build_typescript && electron-builder --win"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.30.7",
+        "@typescript-eslint/parser": "^5.30.7",
+        "electron": "^19.0.9",
+        "electron-builder": "^23.1.0",
+        "eslint": "8.0.1",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "2.25.2",
+        "eslint-plugin-n": "15.0.0",
+        "eslint-plugin-promise": "6.0.0",
+        "typescript": "^4.7.4"
+    },
+    "build": {
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ]
+        },
+        "files": [
+            "lib/**/*",
+            "node_modules/**/*",
+            "package.json"
+        ]
+    }
+}
